@@ -237,6 +237,32 @@
 
     <div class="nav-button prev"></div>
     <div class="nav-button next"></div>
+    
+    <div class="swiper-pagination"></div>
+
+    <style>
+        .swiper-pagination {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+        .swiper-pagination-bullet {
+            width: 10px;
+            height: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .swiper-pagination-bullet-active {
+            background: black;
+            transform: scale(1.2);
+        }
+    </style>
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="/static/js/swiper-init.js"></script>

@@ -1,108 +1,133 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Constants
+    const ANIMATION_TIMING = {
+        zoom: 600,
+        slide: 800
+    };
+    const BEZIER_CURVE = 'cubic-bezier(0.4, 0, 0.2, 1)';
+
+    // Initialize Swiper
     const swiper = new Swiper('.swiper', {
         allowTouchMove: false,
         virtualTranslate: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            bulletClass: 'swiper-pagination-bullet',
+            bulletActiveClass: 'swiper-pagination-bullet-active',
+            renderBullet: (_, className) => `<div class="${className}"></div>`
+        }
     });
 
+    // DOM Elements
+    const slides = document.querySelectorAll('.swiper-slide');
     const prevButton = document.querySelector('.nav-button.prev');
     const nextButton = document.querySelector('.nav-button.next');
+    const bullets = document.querySelectorAll('.swiper-pagination-bullet');
     let isAnimating = false;
 
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
+    // Utility Functions
+    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-    async function animateSlideTransition(direction) {
+    const resetSlideStates = (slide, options = {}) => {
+        const { transition = 'none', opacity = '0', transform = 'none' } = options;
+        slide.style.transition = transition;
+        slide.style.opacity = opacity;
+        slide.style.transform = transform;
+        slide.querySelector('.slide-container').style.transform = 'none';
+    };
+
+    const updatePagination = targetIndex => {
+        bullets.forEach((bullet, index) => {
+            bullet.classList.toggle('swiper-pagination-bullet-active', index === targetIndex);
+        });
+    };
+
+    // Animation Functions
+    const animateSlide = async (currentSlide, targetSlide, direction) => {
+        const isForward = direction === 'next';
+        
+        // Initial states
+        resetSlideStates(targetSlide, {
+            opacity: '1',
+            transform: isForward ? 'translateX(100%)' : 'translateX(-100%)'
+        });
+        targetSlide.querySelector('.slide-container').style.transform = 'scale(0.5)';
+        void targetSlide.offsetWidth;
+
+        // Zoom out current
+        const container = currentSlide.querySelector('.slide-container');
+        container.style.transition = `transform ${ANIMATION_TIMING.zoom}ms ${BEZIER_CURVE}`;
+        container.style.transform = 'scale(0.5)';
+        await sleep(ANIMATION_TIMING.zoom);
+
+        // Slide transition
+        [currentSlide, targetSlide].forEach(slide => {
+            slide.style.transition = `transform ${ANIMATION_TIMING.slide}ms ${BEZIER_CURVE}`;
+        });
+        currentSlide.style.transform = isForward ? 'translateX(-100%)' : 'translateX(100%)';
+        targetSlide.style.transform = 'translateX(0)';
+        await sleep(ANIMATION_TIMING.slide);
+
+        // Zoom in target
+        const targetContainer = targetSlide.querySelector('.slide-container');
+        targetContainer.style.transition = `transform ${ANIMATION_TIMING.zoom}ms ${BEZIER_CURVE}`;
+        targetContainer.style.transform = 'scale(1)';
+
+        // Update states
+        currentSlide.classList.remove('active');
+        targetSlide.classList.add('active');
+        resetSlideStates(currentSlide);
+        await sleep(ANIMATION_TIMING.zoom);
+    };
+
+    async function handleSlideTransition(direction) {
         if (isAnimating) return;
         isAnimating = true;
 
-        const slides = document.querySelectorAll('.swiper-slide');
         const currentSlide = document.querySelector('.swiper-slide.active');
         const currentIndex = Array.from(slides).indexOf(currentSlide);
-        const nextIndex = direction === 'next' 
-            ? (currentIndex + 1) % slides.length 
+        const nextIndex = direction === 'next'
+            ? (currentIndex + 1) % slides.length
             : (currentIndex - 1 + slides.length) % slides.length;
-        const nextSlide = slides[nextIndex];
 
-        // Reset initial states for next slide
-        nextSlide.style.transition = 'none';
-        nextSlide.querySelector('.slide-container').style.transition = 'none';
-        nextSlide.style.opacity = '1';
-        nextSlide.style.transform = direction === 'next' 
-            ? 'translateX(100%)' 
-            : 'translateX(-100%)';
-        nextSlide.querySelector('.slide-container').style.transform = 'scale(0.5)';
+        await animateSlide(currentSlide, slides[nextIndex], direction);
+        direction === 'next' ? swiper.slideNext() : swiper.slidePrev();
+        updatePagination(nextIndex);
+        isAnimating = false;
+    }
 
-        // Force reflow
-        void nextSlide.offsetWidth;
-
-        // Step 1: Zoom out current slide
-        currentSlide.querySelector('.slide-container').style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-        currentSlide.querySelector('.slide-container').style.transform = 'scale(0.5)';
-
-        // Wait for zoom out to complete
-        await sleep(600);
-
-        // Step 2: Slide current out and new in (both at 50% scale)
-        currentSlide.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-        nextSlide.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+    async function handleDirectTransition(targetIndex) {
+        if (isAnimating) return;
+        const currentSlide = document.querySelector('.swiper-slide.active');
+        const currentIndex = Array.from(slides).indexOf(currentSlide);
         
-        currentSlide.style.transform = direction === 'next' 
-            ? 'translateX(-100%)' 
-            : 'translateX(100%)';
-        nextSlide.style.transform = 'translateX(0)';
+        if (currentIndex === targetIndex) return;
+        isAnimating = true;
 
-        // Wait for sliding to complete
-        await sleep(800);
-
-        // Step 3: Zoom in new slide from 50% to 100%
-        nextSlide.querySelector('.slide-container').style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-        nextSlide.querySelector('.slide-container').style.transform = 'scale(1)';
-
-        // Update active states
-        currentSlide.classList.remove('active');
-        nextSlide.classList.add('active');
-
-        // Reset states after animation
-        currentSlide.style.opacity = '0';
-        currentSlide.style.transform = 'none';
-        currentSlide.querySelector('.slide-container').style.transform = 'none';
-
-        // Update Swiper's internal state
-        if (direction === 'next') {
-            swiper.slideNext();
-        } else {
-            swiper.slidePrev();
-        }
-
-        await sleep(600);
+        await animateSlide(currentSlide, slides[targetIndex], targetIndex > currentIndex ? 'next' : 'prev');
+        swiper.slideTo(targetIndex);
+        updatePagination(targetIndex);
         isAnimating = false;
     }
 
     // Event Listeners
-    nextButton.addEventListener('click', () => {
-        animateSlideTransition('next');
+    bullets.forEach((bullet, index) => {
+        bullet.addEventListener('click', () => handleDirectTransition(index));
     });
 
-    prevButton.addEventListener('click', () => {
-        animateSlideTransition('prev');
-    });
+    nextButton.addEventListener('click', () => handleSlideTransition('next'));
+    prevButton.addEventListener('click', () => handleSlideTransition('prev'));
 
-    // Keyboard Navigation
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') {
-            animateSlideTransition('next');
-        } else if (e.key === 'ArrowLeft') {
-            animateSlideTransition('prev');
-        }
+        if (e.key === 'ArrowRight') handleSlideTransition('next');
+        if (e.key === 'ArrowLeft') handleSlideTransition('prev');
     });
 
     // Initialize first slide
-    const firstSlide = document.querySelector('.swiper-slide');
-    if (firstSlide) {
-        firstSlide.classList.add('active');
-        firstSlide.style.opacity = '1';
-        firstSlide.style.transform = 'none';
-        firstSlide.querySelector('.slide-container').style.transform = 'none';
+    if (slides[0]) {
+        slides[0].classList.add('active');
+        resetSlideStates(slides[0], { opacity: '1' });
+        bullets[0]?.classList.add('swiper-pagination-bullet-active');
     }
 });

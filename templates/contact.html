@@ -6,7 +6,9 @@
         width: 500px;
         position: fixed;
         bottom: 10px;
-        right: 300px;
+        /* Position halfway between right edge and the end of the "contact" text */
+        left: 50%; /* Position from left instead of right for more predictable centering */
+        transform: translateX(calc(-50% + 120px)); /* Increased offset to move form further right */
         z-index: 1;
         padding: 0;
         margin: 0;
