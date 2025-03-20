@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        header {
+            padding-top: 13px !important;
+            padding-left: 28px !important;
+            padding-right: 28px !important;
+            padding-bottom: 20px !important;
+        }
+        body {
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        .swiper {
+            width: 100%;
+            height: calc(100vh - 53px); /* Adjusted for new header padding (13px + 20px) */
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 28px; /* Match new header padding */
+        }
+        .swiper-wrapper {
+            width: 100%;
+            height: 100%;
+        }
+        .swiper-slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .swiper-slide.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .slide-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform-origin: center center;
+            background: white;
+        }
+        .slide-content {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            position: relative;
+        }
+        .slide-text {
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .slide-title {
+            font-size: 5vw;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            line-height: 1;
+            color: black;
+        }
+        .slide-description {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        .slide-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .slide-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: black;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            width: fit-content;
+        }
+        .slide-link:hover {
+            transform: translateY(-2px);
+            color: white;
+        }
+        .slide-image-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .slide-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .nav-button {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .nav-button:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+        .nav-button.prev {
+            left: 30px;
+        }
+        .nav-button.next {
+            right: 30px;
+        }
+        .nav-button::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            border-right: 2px solid black;
+            border-bottom: 2px solid black;
+            position: relative;
+        }
+        .nav-button.prev::before {
+            transform: rotate(135deg);
+            right: -2px;
+        }
+        .nav-button.next::before {
+            transform: rotate(-45deg);
+            left: -2px;
+        }
+    </style>
+
+    <div class="swiper fade-up">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide active">
+                <div class="slide-container">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <div class="slide-title">YomuLAB</div>
+                            <div class="slide-description">
+                                Flask web app for learning Japanese through AI-driven conversations 
+                                and an adaptive proficiency test. User authentication with sqlite3 database.
+                                Goal: Explore AI API integration.
+                            </div>
+                            <div class="slide-links">
+                                <a href="https://github.com/Erik0810/yomulab" target="_blank" class="slide-link">Github</a>
+                                <a href="https://yomulab.onrender.com" target="_blank" class="slide-link">Website</a>
+                            </div>
+                        </div>
+                        <div class="slide-image-container">
+                            <img src="https://source.unsplash.com/random/1200x800?tech" alt="Yomulab Project" class="slide-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-container">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <div class="slide-title">CloudRipper</div>
+                            <div class="slide-description">
+                                Flask web app for downloading SoundCloud playlists locally.
+                                Goal: Implement Gunicorn and a hosted PostgreSQL database for multi-user support.
+                            </div>
+                            <div class="slide-links">
+                                <a href="https://github.com/Erik0810/cloudripper" target="_blank" class="slide-link">Github</a>
+                                <a href="https://cloudripper.onrender.com" target="_blank" class="slide-link">Website</a>
+                            </div>
+                        </div>
+                        <div class="slide-image-container">
+                            <img src="https://source.unsplash.com/random/1200x800?cloud" alt="Cloudripper Project" class="slide-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-container">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <div class="slide-title">Health app</div>
+                            <div class="slide-description">
+                                React Native mobile app for tracking health progress and workouts.
+                                Developed with Expo GO for testing and Firebase for user auth.
+                                Goal: Learn Firebase + Firestore, understand basics of React Native.
+                            </div>
+                            <div class="slide-links">
+                                <a href="https://github.com/Erik0810/health-app" target="_blank" class="slide-link">Github</a>
+                            </div>
+                        </div>
+                        <div class="slide-image-container">
+                            <img src="https://source.unsplash.com/random/1200x800?data" alt="Project Three" class="slide-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-container">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <div class="slide-title">MediaScout</div>
+                            <div class="slide-description">
+                                Spring Boot Web App that utilizes AI to find media you have forgotten the name of.
+                                Goal: Understand Spring Boot basics, leverage OpenAI API to work with Google images API.
+                            </div>
+                            <div class="slide-links">
+                                <a href="https://github.com/Erik0810/mediascout" target="_blank" class="slide-link">Github</a>
+                            </div>
+                        </div>
+                        <div class="slide-image-container">
+                            <img src="https://source.unsplash.com/random/1200x800?cloud" alt="Cloudripper Project" class="slide-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-button prev"></div>
+    <div class="nav-button next"></div>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="/static/js/swiper-init.js"></script>
+{% endblock %}
