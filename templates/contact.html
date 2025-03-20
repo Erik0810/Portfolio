@@ -23,6 +23,12 @@
         position: relative;
         width: 100%;
     }
+    .form-header {
+        font-size: 1.6rem;
+        margin-bottom: 2rem;
+        font-family: Arial, sans-serif;
+        color: black;
+    }
     .form-label {
         display: block;
         margin-bottom: 8px;
@@ -114,16 +120,6 @@
         border-color: #721c24;
         background: transparent;
     }
-    .big-contact {
-        position: fixed;
-        bottom: 20px;
-        left: 10px;
-        font-size: 100px;
-        font-weight: bold;
-        font-family: 'Helvetica Now Pro Display Bold';
-        line-height: 0.6;
-        z-index: 0;
-    }
 </style>
 
 <div class="contact-container fade-up">
@@ -140,6 +136,7 @@
     {% endif %}
 
     <div class="contact-form">
+        <h2 class="form-header">Get in touch</h2>
         <form method="POST">
             <div class="form-group">
                 <label class="form-label">Name</label>
@@ -158,7 +155,7 @@
     </div>
 </div>
 
-<div class="big-contact fade-up">
+<div class="big-header-bottomleft fade-up">
     contact
 </div>
 {% endblock %}

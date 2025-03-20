@@ -47,9 +47,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const animateSlide = async (currentSlide, targetSlide, direction) => {
         const isForward = direction === 'next';
         
-        // Initial states
+        // Initial states - Keep target slide invisible
         resetSlideStates(targetSlide, {
-            opacity: '1',
+            opacity: '0',
             transform: isForward ? 'translateX(100%)' : 'translateX(-100%)'
         });
         targetSlide.querySelector('.slide-container').style.transform = 'scale(0.5)';
@@ -61,7 +61,8 @@ document.addEventListener('DOMContentLoaded', function() {
         container.style.transform = 'scale(0.5)';
         await sleep(ANIMATION_TIMING.zoom);
 
-        // Slide transition
+        // Now make target slide visible and start slide transition
+        targetSlide.style.opacity = '1';
         [currentSlide, targetSlide].forEach(slide => {
             slide.style.transition = `transform ${ANIMATION_TIMING.slide}ms ${BEZIER_CURVE}`;
         });

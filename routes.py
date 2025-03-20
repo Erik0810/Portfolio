@@ -6,9 +6,9 @@ from flask_mail import Message
 def home():
     return render_template('index.html')
 
-@app.route('/cv')
+@app.route('/about')
 def cv():
-    return render_template('cv.html')
+    return render_template('about.html')
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
