@@ -77,3 +77,9 @@ a:hover {
     line-height: 0.6;
     z-index: 0;
 }
+
+@media (min-width: 1500px) {
+    .spline-container {
+        margin-top: 100px;
+    }
+}

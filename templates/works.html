@@ -7,6 +7,8 @@
             padding-left: 28px !important;
             padding-right: 28px !important;
             padding-bottom: 20px !important;
+            z-index: 100;
+            position: relative;
         }
         body {
             overflow: hidden;
@@ -144,7 +146,24 @@
             right: 30px;
         }
 
+        @media (min-width: 1500px) {
+            .swiper {
+                transform: scale(1);
+                transform-origin: center center;
+            }
+        }
+        @media (min-width: 1800px) {
+            .swiper {
+                transform: scale(1.25);
+                transform-origin: center center;
+            }
+        }
+        
         @media (max-width: 1500px) {
+            .swiper {
+                transform: scale(0.8);
+                transform-origin: center center;
+            }
             .nav-button {
                 top: auto;
                 bottom: 80px; /* Space for pagination dots below */
