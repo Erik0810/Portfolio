@@ -1,7 +1,128 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="big-header-bottomleft fade-up">
-        about
-    </div>
+
+        <div class="big-header-bottomleft fade-up">
+            about
+        </div>
+        <div class="text-container">
+            <h1 class="text-center section-heading">Click a slide to see relevant projects</h1>
+        </div>
+        <div class="slider-container">
+            <section id="tech">
+            <div class="container">
+                <div class="swiper tech-slider">
+                    <div class="swiper-wrapper">
+                        <!-- SLide start -->
+                        <div class="swiper-slide tech-slide">
+                            <div class="tech-slide-img">
+                                <div class="image-overlay"></div>
+                                <img src="static/images/Cloudripper.png" alt="">
+                            </div>
+                        </div>
+                        <div class="language-name">
+                            Python
+                        </div>
+                        <!-- SLide end -->
+                        <!-- SLide start -->
+                        <div class="swiper-slide tech-slide">
+                            <div class="tech-slide-img">
+                                <div class="image-overlay"></div>
+                                <img src="static/images/Cloudripper.png" alt="">
+                            </div>
+                            <div class="language-name">
+                                JavaScript
+                            </div>
+                        </div>
+                        <!-- SLide end -->
+                        <!-- SLide start -->
+                        <div class="swiper-slide tech-slide">
+                            <div class="tech-slide-img">
+                                <div class="image-overlay"></div>
+                                <img src="static/images/Cloudripper.png" alt="">
+                            </div>
+                            <div class="language-name">
+                                TypeScript
+                            </div>
+                        </div>
+                        <!-- SLide end -->
+                        <!-- SLide start -->
+                        <div class="swiper-slide tech-slide">
+                            <div class="tech-slide-img">
+                                <div class="image-overlay"></div>
+                                <img src="static/images/Cloudripper.png" alt="">
+                            </div>
+                            <div class="language-name">
+                                Go
+                            </div>
+                        </div>
+                        <!-- SLide end -->
+                        <!-- SLide start -->
+                        <div class="swiper-slide tech-slide">
+                            <div class="tech-slide-img">
+                                <div class="image-overlay"></div>
+                                <img src="static/images/Cloudripper.png" alt="">
+                            </div>
+                            <div class="language-name">
+                                Rust
+                            </div>
+                        </div>
+                        <!-- SLide end -->
+                        <!-- SLide start -->
+                        <div class="swiper-slide tech-slide">
+                            <div class="tech-slide-img">
+                                <div class="image-overlay"></div>
+                                <img src="static/images/Cloudripper.png" alt="">
+                            </div>
+                            <div class="language-name">
+                                Kotlin
+                            </div>
+                        </div>
+                        <!-- SLide end -->
+                        <!-- SLide start -->
+                        <div class="swiper-slide tech-slide">
+                            <div class="tech-slide-img">
+                                <div class="image-overlay"></div>
+                                <img src="static/images/Cloudripper.png" alt="">
+                            </div>
+                            <div class="language-name">
+                                Swift
+                            </div>
+                        </div>
+                        <!-- SLide end -->
+                        <!-- SLide start -->
+                        <div class="swiper-slide tech-slide">
+                            <div class="tech-slide-img">
+                                <div class="image-overlay"></div>
+                                <img src="static/images/Cloudripper.png" alt="">
+                            </div>
+                            <div class="language-name">
+                                C#
+                            </div>
+                        </div>
+                        <!-- SLide end -->
+                    </div>
+        
+                    <div class="tech-slider-control">
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+            </section>
+        </div>
+        
+    
+    
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script src="/static/js/swiper-about.js"></script>
+    <script src="/static//js/about-page-state.js"></script>
 {% endblock %}
