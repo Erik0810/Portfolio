@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Simple Swiper initialization
     const swiper = new Swiper('.page-swiper-container', {
         init: true,
+        direction: 'vertical',
         slidesPerView: 1,
         speed: 400,
         spaceBetween: 0,
@@ -16,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add keyboard navigation
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') swiper.slideNext();
-        if (e.key === 'ArrowLeft') swiper.slidePrev();
+        if (e.key === 'ArrowDown') swiper.slideNext();
+        if (e.key === 'ArrowUp') swiper.slidePrev();
     });
 });
