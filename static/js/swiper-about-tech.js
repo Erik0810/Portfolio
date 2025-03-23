@@ -19,9 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
             slideShadows: false,
             scale: 0.9
         },
-        keyboard: {
-            enabled: true,
-            onlyInViewport: true
-        }
+        keyboard: false // Disable keyboard navigation for tech slider
     });
 });
