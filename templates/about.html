@@ -5,16 +5,21 @@
         <div class="swiper-wrapper">
                 <!-- Page 1 -->
                 <div class="swiper-slide">
-                    <div class="slide-container">
-                        <div class="big-header-bottomleft fade-up">
+                    <div class="slide-container fade-up fade-out">
+                        <div class="big-header-bottomleft">
                             about
                         </div>
-                        
+                        <button class="nav-button next">
+                            <ion-icon name="chevron-down-outline"></ion-icon>
+                        </button>
                     </div>
                 </div>
                 <!-- Page 2 -->
                 <div class="swiper-slide">
                     <div class="slide-container">
+                        <button class="nav-button prev">
+                            <ion-icon name="chevron-up-outline"></ion-icon>
+                        </button>
                         <div class="text-container">
                             <h1 class="text-center section-heading">Click a slide to see relevant projects</h1>
                         </div>
@@ -125,14 +130,6 @@
             </div>
         </div>
 
-        <!-- Navigation Buttons -->
-        <button class="nav-button prev">
-            <ion-icon name="chevron-up-outline"></ion-icon>
-        </button>
-        <button class="nav-button next">
-            <ion-icon name="chevron-down-outline"></ion-icon>
-        </button>
-
         <!-- Required scripts -->
         <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
         <script
@@ -211,11 +208,11 @@
             }
     
             .nav-button.prev {
-                top: 20px;
+                top: 60px;
             }
     
             .nav-button.next {
-                bottom: 20px;
+                bottom: 25px;
             }
         </style>
 {% endblock %}

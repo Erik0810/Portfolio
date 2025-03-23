@@ -63,14 +63,27 @@ a:hover {
 
 /* Add initial state for fade-up elements */
 .fade-up {
-    opacity: 0 !important;
+    opacity: 0;
     visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
 /* Class to be added when animations should start */
 .fade-up.visible {
-    opacity: 1 !important;
+    opacity: 1;
     visibility: visible;
+}
+
+/* Add initial state for fade-out elements */
+.fade-out {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.5s ease;
+}
+
+.fade-out.fade-out-active {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .big-header-bottomleft {
@@ -97,8 +110,13 @@ a:hover {
 .tech-slider{
     height: 5rem;
     padding: 0rem 0;
+    top: 35rem;
     position: relative;
-
+}
+@media (max-width: 1500px) {
+    .tech-slider {
+        top: 25rem;
+    }
 }
 .tech-slide{
     width: 5rem;
@@ -156,9 +174,10 @@ a:hover {
     z-index: 10;
 }
 .text-container {
-    position: fixed;
-    bottom: calc(15vh + 4vh + 2vh); /* slider height + slider padding + spacing */
-    right: 20vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 50vw;
     max-width: 800px;
     text-align: center;

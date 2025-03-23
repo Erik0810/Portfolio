@@ -15,6 +15,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Handle fade animations
+    const firstSlideContent = document.querySelector('.swiper-slide:first-child .fade-out');
+    
+    // Initial state - ensure content is visible
+    setTimeout(() => {
+        firstSlideContent.classList.add('visible');
+    }, 100);
+    
+    // Handle fade out when sliding down
+    swiper.on('slideNextTransitionStart', function() {
+        if (swiper.activeIndex === 1) {
+            // Add small delay to sync with slide transition
+            setTimeout(() => {
+                firstSlideContent.classList.add('fade-out-active');
+            }, 50);
+        }
+    });
+
+    // Handle fade in when sliding up
+    swiper.on('slidePrevTransitionStart', function() {
+        if (swiper.activeIndex === 0) {
+            firstSlideContent.classList.remove('fade-out-active');
+        }
+    });
+
     // Add keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowDown') swiper.slideNext();
