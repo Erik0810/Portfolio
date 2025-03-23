@@ -1,8 +1,15 @@
 from flask import Flask
 from flask_mail import Mail
+from flask_caching import Cache
 import os
 
 app = Flask(__name__)
+
+# Cache all static pages for 5 minutes for smoother UX
+cache = Cache(app, config={
+    'CACHE_TYPE': 'SimpleCache',
+    'CACHE_DEFAULT_TIMEOUT': 300  
+})
 
 # Security configuration
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or 'dev-key-not-secure'

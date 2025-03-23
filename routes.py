@@ -1,12 +1,14 @@
 from flask import render_template, request, flash, redirect, url_for
-from __init__ import app, mail
+from __init__ import app, mail, cache
 from flask_mail import Message
 
 @app.route('/')
+@cache.cached()
 def home():
     return render_template('index.html')
 
 @app.route('/about')
+@cache.cached()
 def cv():
     return render_template('about.html')
 
@@ -40,5 +42,6 @@ def contact():
     return render_template('contact.html')
 
 @app.route('/works')
+@cache.cached()
 def works():
     return render_template('works.html')
