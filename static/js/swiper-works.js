@@ -131,4 +131,24 @@ document.addEventListener('DOMContentLoaded', function() {
         resetSlideStates(slides[0], { opacity: '1' });
         bullets[0]?.classList.add('swiper-pagination-bullet-active');
     }
+
+    // Add click handlers for website buttons with loading time warning
+    const yomuLabWebsiteBtn = document.querySelector('.swiper-slide:nth-child(1) a[href="https://yomulab.onrender.com"]');
+    const cloudripperWebsiteBtn = document.querySelector('.swiper-slide:nth-child(2) a[href="https://cloudripper.onrender.com"]');
+
+    const handleWebsiteClick = (event) => {
+        event.preventDefault();
+        const url = event.target.href;
+        const confirmed = window.confirm("Please note: This app is hosted on a free plan and may take up to 1 minute to load on first visit as the server needs to start up.");
+        if (confirmed) {
+            window.open(url, '_blank');
+        }
+    };
+
+    if (yomuLabWebsiteBtn) {
+        yomuLabWebsiteBtn.addEventListener('click', handleWebsiteClick);
+    }
+    if (cloudripperWebsiteBtn) {
+        cloudripperWebsiteBtn.addEventListener('click', handleWebsiteClick);
+    }
 });
