@@ -1,4 +1,4 @@
-from flask import render_template, request, flash, redirect, url_for
+from flask import render_template, request, flash, redirect, url_for, send_from_directory
 from __init__ import app, mail, cache
 from flask_mail import Message
 
@@ -11,6 +11,34 @@ def home():
 @cache.cached()
 def cv():
     return render_template('about.html')
+
+@app.route('/static/images/tech_icons/<path:filename>')
+def serve_tech_icons(filename):
+    try:
+        print(f'Serving tech icon: {filename}')  # Debug log
+        if not filename.endswith('.svg'):
+            return f'Invalid file type. Expected .svg, got: {filename}', 400
+        response = send_from_directory('static/images/tech_icons', filename)
+        response.headers['Cache-Control'] = 'public, max-age=3600, must-revalidate'
+        print(f'Successfully served: {filename}')  # Debug log
+        return response
+    except Exception as e:
+        print(f'Error serving {filename}: {str(e)}')  # Debug log
+        return str(e), 500
+
+@app.route('/static/images/<path:filename>')
+def serve_static(filename):
+    if 'tech_icons' not in filename:  # Skip tech_icons as they're handled above
+        response = send_from_directory('static/images', filename)
+        if filename.endswith('.svg'):
+            response.headers['Cache-Control'] = 'public, max-age=3600, must-revalidate'
+            response.headers['Expires'] = 'Thu, 01 Dec 2023 16:00:00 GMT'
+        return response
+    if filename.endswith('.svg'):
+        response.headers['Cache-Control'] = 'public, max-age=3600, must-revalidate'
+        response.headers['Expires'] = 'Thu, 01 Dec 2023 16:00:00 GMT'
+    return response
+
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():

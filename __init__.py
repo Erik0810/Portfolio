@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, send_from_directory
 from flask_mail import Mail
 from flask_caching import Cache
 import os
