@@ -26,6 +26,7 @@ footer {
 
 body {
     font-family: 'Helvetica Now Pro Display Bold', sans-serif;
+    overflow: hidden;
 }
 
 a {
@@ -58,6 +59,9 @@ a:hover {
 @media (min-width: 1500px) {
     .spline-container {
         margin-top: 100px;
+    }
+    .big-header-bottomleft {
+        font-size: 150px;
     }
 }
 
