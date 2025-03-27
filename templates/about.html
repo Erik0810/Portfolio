@@ -16,7 +16,7 @@
                                 </div>
                                 <div class="education-box">
                                     <div class="education-header">
-                                        <ion-icon name="school-outline"></ion-icon>
+                                        <img src="/static/images/icons/education.png" alt="Education" class="nav-icon">
                                         <h3>Education</h3>
                                     </div>
                                     <div class="education-list">
@@ -41,7 +41,7 @@
                             about
                         </div>
                         <button class="nav-button next">
-                            <ion-icon name="chevron-down-outline"></ion-icon>
+                            <img src="/static/images/icons/chevron-down.png" alt="Scroll Down" class="nav-icon">
                         </button>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                 <div class="swiper-slide">
                     <div class="slide-container">
                         <button class="nav-button prev">
-                            <ion-icon name="chevron-up-outline"></ion-icon>
+                            <img src="/static/images/icons/chevron-up.png" alt="Scroll Up" class="nav-icon">
                         </button>
                         <section id="tech">
                         <div class="container">
@@ -204,20 +204,18 @@
 
         <!-- Required scripts -->
         <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
-        <script
-          type="module"
-          src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-        ></script>
-        <script
-          nomodule
-          src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-        ></script>
         <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
         <script src="/static/js/swiper-about-tech.js"></script>
         <script src="/static/js/swiper-about-page.js"></script>
     
         <!-- Page navigator styles -->
         <style>
+            .education-header img.nav-icon {
+                width: 24px;
+                height: 24px;
+                margin-right: 8px;
+            }
+            
             body {
                 overflow: hidden;
             }
@@ -274,9 +272,10 @@
                 transform: translateX(-50%) scale(1.2);
             }
     
-            .nav-button ion-icon {
-                font-size: 40px;
-                color: black;
+            .nav-button .nav-icon {
+                width: 40px;
+                height: 40px;
+                object-fit: contain;
             }
     
             .nav-button.prev {
