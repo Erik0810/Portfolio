@@ -15,7 +15,15 @@ document.addEventListener('DOMContentLoaded', function() {
             clickable: true,
             bulletClass: 'swiper-pagination-bullet',
             bulletActiveClass: 'swiper-pagination-bullet-active',
-            renderBullet: (_, className) => `<div class="${className}"></div>`
+            renderBullet: (index, className) => {
+                const PROJECT_NAMES = [
+                    'YomuLAB',
+                    'CloudRipper',
+                    'Health App',
+                    'MediaScout'
+                ];
+                return `<div class="${className}" data-name="${PROJECT_NAMES[index]}"></div>`;
+            }
         }
     });
 
