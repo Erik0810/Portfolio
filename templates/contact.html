@@ -3,38 +3,37 @@
 {% block content %}
 <style>
     .contact-container {
-        width: 500px;
+        width: 375px;  /* 25% smaller from 500px */
         position: fixed;
         bottom: 10px;
-        /* Position halfway between right edge and the end of the "contact" text */
-        left: 50%; /* Position from left instead of right for more predictable centering */
-        transform: translateX(calc(-50% + 120px)); /* Increased offset to move form further right */
+        left: 50%;
+        transform: translateX(calc(-50% + 90px)); /* Adjusted offset to maintain relative position */
         z-index: 1;
         padding: 0;
         margin: 0;
     }
     .contact-form {
-        padding: 30px;
+        padding: 22px; /* 25% smaller from 30px */
         background: transparent;
         width: 100%;
     }
     .form-group {
-        margin-bottom: 25px;
+        margin-bottom: 19px; /* 25% smaller from 25px */
         position: relative;
         width: 100%;
     }
     .form-header {
-        font-size: 1.6rem;
-        margin-bottom: 2rem;
+        font-size: 1.2rem; /* 25% smaller from 1.6rem */
+        margin-bottom: 1.5rem; /* 25% smaller from 2rem */
         font-family: Arial, sans-serif;
         color: black;
     }
     .form-label {
         display: block;
-        margin-bottom: 8px;
+        margin-bottom: 6px; /* 25% smaller from 8px */
         color: black;
         font-family: Arial, sans-serif;
-        font-size: 14px;
+        font-size: 11px; /* 25% smaller from 14px */
         width: 100%;
     }
     .form-group input,
