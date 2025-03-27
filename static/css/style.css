@@ -639,7 +639,8 @@ a:hover {
 
 .education-box {
     background: white;        /* Restore original color */
-    padding: 2rem;           /* Restore original padding */
+    padding-left: 2rem;
+    padding-top: 1rem;           /* Restore original padding */
     border-radius: 0.5rem;   /* Restore original border radius */
 }
 
@@ -792,4 +793,13 @@ a:hover {
         width: 32px;
         height: 32px;
     }
+}
+
+.content-separator {
+    margin: 20px 2rem;
+    padding: 0 2rem;
+    border: 0;
+    border-top: 1px solid #ccc;
+    width: 80%;
+    max-width: 600px;
 }
