@@ -4,7 +4,7 @@
     --color-primary: #000000;
     --color-secondary: #333333;
     --color-background: #ffffff;
-    --color-text: #333333;
+    --color-text: #000000;
     --color-white: #ffffff;
 
     /* Typography - Original desktop sizes */
@@ -51,7 +51,7 @@
 header {
     background-color: white;
     color: #333;
-    padding-top: 5px;
+    padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 20px;
@@ -212,7 +212,7 @@ body {
     font-family: 'Helvetica Now Pro Display Bold', sans-serif;
     overflow: hidden;
     line-height: 1.5;
-    color: #333;
+    color: #000000;
     background-color: white;
     min-height: 100vh;
     font-size: 16px;
@@ -351,7 +351,7 @@ a:hover {
 /* Restore original big header styles */
 .big-header-bottomleft {
     position: fixed;
-    bottom: 20px;
+    bottom: 30px;
     left: 10px;
     font-size: 100px;
     font-weight: bold;
@@ -360,35 +360,12 @@ a:hover {
     z-index: 0;
 }
 
-/* Media queries for responsive adjustments */
+/* Responsive adjustments */
 @media (max-width: 768px) {
     .big-header-bottomleft {
-        font-size: clamp(2rem, 8vw, 4rem);
-        bottom: var(--space-sm);
-        line-height: 1;
-    }
-}
-
-@media (min-width: 1500px) {
-    .big-header-bottomleft {
-        font-size: 150px;
-        bottom: var(--space-lg);
-    }
-}
-
-/* Responsive styles for the big header */
-@media (max-width: 768px) {
-    .big-header-bottomleft {
-        font-size: clamp(2rem, 8vw, 4rem);
-        bottom: var(--space-sm);
-        line-height: 1;
-    }
-}
-
-@media (min-width: 1500px) {
-    .big-header-bottomleft {
-        font-size: clamp(5rem, 12vw, 9.375rem);
-        bottom: var(--space-lg);
+        
+        bottom: 30px;
+        line-height: 0.6;
     }
 }
 
