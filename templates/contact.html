@@ -101,13 +101,16 @@
         background: rgba(0, 0, 0, 0.05);
     }
     .alert {
-        padding: 12px;
-        margin-bottom: 20px;
+        padding: 12px 24px;
+        margin: 20px 0;
         font-weight: bold;
         font-family: Arial, sans-serif;
         border: 2px solid;
         border-radius: 0;
         width: 100%;
+        text-align: center;
+        display: block;
+        box-sizing: border-box;
     }
     .alert-success {
         color: #155724;
@@ -129,19 +132,18 @@
 </style>
 
 <div class="contact-container fade-up">
-    {% if success %}
-    <div class="alert alert-success">
-        Message sent successfully! I'll get back to you soon.
-    </div>
-    {% endif %}
-    
-    {% if error %}
-    <div class="alert alert-error">
-        There was an error sending your message. Please try again later.
-    </div>
-    {% endif %}
-
     <div class="contact-form">
+        {% if success %}
+        <div class="alert alert-success">
+            Message sent successfully!
+        </div>
+        {% endif %}
+        
+        {% if error %}
+        <div class="alert alert-error">
+            There was an error sending your message. Please try again later.
+        </div>
+        {% endif %}
         <h2 class="form-header">Get in touch</h2>
         <form method="POST">
             <div class="form-group">
