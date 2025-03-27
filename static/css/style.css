@@ -380,15 +380,15 @@ a:hover {
 
 }
 .tech-slider {
-    height: 15rem;  /* Increased to show text properly */
+    height: 50vh;  /* Increased to show text properly */
     padding: 0rem 0;
-    top: 20rem;
+    top: 15rem;
     position: relative;
     margin-bottom: 2rem;
 }
 @media (max-width: 1500px) {
     .tech-slider {
-        top: 15rem;
+        top: 30vh;
     }
 }
 @media (max-width: 768px) {
