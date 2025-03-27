@@ -45,9 +45,12 @@
                         <div class="big-header-bottomleft">
                             about
                         </div>
-                        <button class="nav-button next">
-                            <img src="/static/images/icons/chevron-down.png" alt="Scroll Down" class="nav-icon">
-                        </button>
+                        <div class="nav-section">
+                            <button class="nav-button next">
+                                <img src="/static/images/icons/chevron-down.png" alt="Scroll Down" class="nav-icon">
+                            </button>
+                            <div class="nav-text">View tech-stack</div>
+                        </div>
                     </div>
                 </div>
                 <!-- Page 2 -->
@@ -294,6 +297,40 @@
             .nav-button.next {
                 opacity: 1 !important;
                 pointer-events: auto !important;
+            }
+
+            .nav-section {
+                position: absolute;
+                left: 50%;
+                bottom: 25px;
+                transform: translateX(-50%);
+                display: flex;
+                flex-direction: column-reverse;
+                align-items: center;
+                gap: 4px;
+            }
+
+            .nav-text {
+                color: var(--text-color);
+                font-size: 14px;
+                font-weight: 500;
+                text-align: center;
+                margin-bottom: -10px;
+                opacity: 0%;
+                transition: opacity 0.3s ease;
+            }
+
+            .nav-section .nav-button:hover + .nav-text {
+                opacity: 1;
+            }
+
+            .nav-section .nav-button {
+                position: static;
+                transform: none;
+            }
+
+            .nav-section .nav-button:hover {
+                transform: scale(1.2);
             }
         </style>
 {% endblock %}
