@@ -2,20 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Erik Øverby's Portfolio - Software Developer">
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
     <title>Portfolio</title>
+    <script defer src="/static/js/nav.js"></script>
 </head>
 <body>
     <header>
-        <nav style="display: flex; justify-content: space-between; align-items: center;">
-            <a href="/" style="display: inline-block; margin-right: 20px; font-size: 30px; text-decoration: none;">家</a>
-            <div style="float: right;">
-                <a href="/" style="margin-left: 20px; text-decoration: none;">Home</a>
-                <a href="/about" style="margin-left: 20px; text-decoration: none;">About</a>
-                <a href="/contact" style="margin-left: 20px; text-decoration: none;">Contact</a>
-                <a href="/works" style="margin-left: 20px; text-decoration: none;">Works</a>
+        <nav class="main-nav">
+            <a href="/" class="nav-logo">家</a>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+                <a href="/works">Works</a>
             </div>
         </nav>
     </header>
