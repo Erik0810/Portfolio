@@ -563,10 +563,10 @@ a:hover {
 .split-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;                /* Restore original gap */
-    height: 100vh;            /* Restore original height */
-    padding: 2rem;            /* Restore original padding */
-    max-width: 1400px;        /* Restore original max-width */
+    gap: 2rem;                
+    height: 100vh;            
+    padding: 2rem;            
+    max-width: 1400px;       
     margin: 0 auto;
 }
 
@@ -583,10 +583,11 @@ a:hover {
     background: white;        /* Restore original color */
     padding: 2rem 2rem 0.75rem 2rem; /* Restore original padding */
     border-radius: 0.5rem;    /* Restore original border radius */
+    margin-top:-2rem;
 }
 
 .content-box h2 {
-    margin-bottom: 1rem;      /* Restore original margin */
+    margin-bottom: 1rem;      
 }
 
 .content-box p {
@@ -597,43 +598,23 @@ a:hover {
 @media (max-width: 768px) {
     .split-layout {
         grid-template-columns: 1fr;
-        gap: var(--space-md);
-        padding: var(--space-sm);
+        gap: 1rem;
+        padding: 1rem;
         height: auto;
         min-height: 100vh;
     }
 
     .left-panel {
-        padding: var(--space-sm);
-        padding-top: calc(var(--header-height) + var(--space-md));
+        padding: 1rem;
+        padding-top: 1rem;
         order: 2;
         height: auto;
+        margin-top: -5rem;
     }
 
     .content-box {
-        padding: var(--space-md);
-    }
-}
-
-@media (max-width: 768px) {
-    .split-layout {
-        grid-template-columns: 1fr;
-        gap: var(--space-md);
-        padding: var(--space-sm);
-    }
-
-    .left-panel {
-        padding: var(--space-sm);
-        padding-top: calc(var(--header-height) + var(--space-md));
-        order: 2;
-    }
-
-    .content-box {
-        padding: var(--space-sm);
-    }
-    
-    .content-box h2 {
-        margin-bottom: var(--space-sm);
+        padding: 1rem;
+        margin-top: -2rem;
     }
 }
 
@@ -647,8 +628,8 @@ a:hover {
 .education-header {
     display: flex;
     align-items: center;
-    gap: 0.5rem;            /* Restore original gap */
-    margin-bottom: 0.75rem; /* Restore original margin */
+    gap: 0.5rem;            
+    margin-bottom: 0.75rem; 
 }
 
 .education-header ion-icon {
@@ -672,31 +653,6 @@ a:hover {
     color: #666;           /* Restore original color */
 }
 
-/* Mobile styles maintain responsiveness without affecting desktop */
-@media (max-width: 768px) {
-    .education-box {
-        padding: var(--space-md);
-    }
-
-    .education-list {
-        gap: var(--space-sm);
-    }
-
-    .education-item {
-        gap: var(--space-xs);
-    }
-}
-
-@media (max-width: 768px) {
-    .education-box {
-        padding: var(--space-sm);
-    }
-
-    .education-list {
-        gap: var(--space-sm);
-    }
-}
-
 .right-panel {
     display: flex;
     align-items: center;
@@ -715,6 +671,90 @@ a:hover {
     transform: translate(-50%, -50%);
 }
 
+/* This solution lowkey sucks but its easier than recoding the about page layout for now */
+@media (min-width: 2000px) {
+    .content-box {
+        font-size: larger;
+    }
+    .education-item {
+        font-size: larger;
+    }
+    .education-header {
+        font-size: larger;
+    }
+    .year {
+        font-size: larger;
+    }
+}
+@media (max-width: 1800px) {
+    .content-box {
+        font-size: smaller;
+        margin-right: -1rem;
+    }
+    .education-item {
+        font-size: smaller;
+    }
+    .education-header {
+        font-size: smaller;
+    }
+    .year {
+        font-size: smaller;
+    }
+    .about-photo {
+        width: min(130%, 62.5vh);
+        height: min(130%, 62.5vh);
+    }
+}
+@media (max-width: 1600px) {
+    .content-box {
+        font-size:smaller;
+        margin-top:-3rem;
+        margin-right:-3rem;
+    }
+    .education-item {
+        font-size: x-small;
+    }
+    .education-header {
+        font-size: x-small;
+    }
+    .year {
+        font-size: x-small;
+    }
+    .about-photo {
+        width: min(140%, 62.5vh);
+        height: min(140%, 62.5vh);
+    }
+}
+@media (max-width: 1500px) {
+    .content-box {
+        font-size: x-small;
+        margin-top: -6rem;
+        margin-right: -0rem;
+        width: auto;
+    }
+    .education-item {
+        font-size: x-small;
+    }
+    .education-header {
+        font-size: x-small;
+    }
+    .year {
+        font-size: x-small;
+    }
+}
+
+@media (max-width: 768px) {
+    .education-box,
+    .content-separator {
+        display: none;
+    }
+
+    .content-box {
+        margin-top: 0;
+        font-size: medium;
+    }
+}
+
 /* Mobile responsive styles for right panel */
 @media (max-width: 768px) {
     .right-panel {
@@ -722,6 +762,7 @@ a:hover {
         min-height: 50vh;
         padding: var(--space-sm);
         order: 1;
+        margin-top: -2rem;
     }
 
     .about-photo {
@@ -731,7 +772,7 @@ a:hover {
         top: auto;
         left: auto;
         transform: none;
-        margin: var(--space-md) auto;
+        margin: var(--space-sm) auto var(--space-xs);
     }
 }
 
