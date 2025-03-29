@@ -37,7 +37,6 @@
         --container-padding: var(--container-padding-mobile);
         --space-xl: var(--space-lg);
     }
-    --header-height: 4rem;
 }
 
 /* Base Styles */
@@ -190,13 +189,6 @@ header {
         height: 44px;
     }
 
-    /* Remove mobile-specific size adjustment */
-    @media (max-width: 768px) {
-        .nav-logo {
-            font-size: 2rem; /* Keep same size as desktop */
-        }
-    }
-
     .nav-logo:hover {
         transform: scale(1.05);
     }
@@ -222,12 +214,6 @@ header {
         z-index: 1000;
         display: flex;
         flex-direction: column;
-    }
-
-    .nav-links.active {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
     }
 
     .nav-links a {
@@ -433,13 +419,6 @@ a:hover {
     }
 }
 
-@media (min-width: 1500px) {
-    .spline-container {
-        margin-top: 100px;
-        height: min(90vh, 800px);
-    }
-}
-
 /* Responsive Spline Container */
 @media (max-width: 768px) {
     .spline-container {
@@ -534,17 +513,6 @@ a:hover {
     align-items: center;
 }
 
-.tech-slide-img {
-    position: relative;
-    width: 100%;
-    height: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    border-radius: 1rem;
-}
-
 .tech-slide-img a {
     width: 100%;
     display: flex;
@@ -566,21 +534,7 @@ a:hover {
     display: inline-block;
     max-width: 90%;
 }
-.tech-slide-img {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;  /* Changed from white */
-    border-radius: 1rem;
-    transition: transform 0.3s ease;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    perspective: 1000px;
-}
+
 .tech-slide-img:hover {
     transform: scale(1.1);  /* Slightly larger scale effect */
     background: transparent;  /* Ensure background stays transparent on hover */
