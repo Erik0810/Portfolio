@@ -3,11 +3,11 @@
 {% block content %}
 <style>
     .contact-container {
-        width: 375px;  /* 25% smaller from 500px */
+        width: 500px;
         position: fixed;
         bottom: 10px;
         left: 50%;
-        transform: translateX(calc(-50% + 90px)); /* Adjusted offset to maintain relative position */
+        transform: translateX(-50%);
         z-index: 1;
         padding: 0;
         margin: 0;
@@ -127,6 +127,18 @@
         .contact-container {
             transform: translateX(calc(-50% + 120px)) scale(1.3);
             transform-origin: bottom center;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .contact-container {
+            width: 90%;
+            max-width: 375px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            bottom: auto;
         }
     }
 </style>

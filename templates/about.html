@@ -14,6 +14,7 @@
                                         My current focus is studying full-stack development principles and exploring AI technologies.
                                         I'll be starting a Master's in Programming and System Architecture this fall.</p>
                                 </div>
+                                <hr class="content-separator">
                                 <div class="education-box">
                                     <div class="education-header">
                                         <img src="/static/images/icons/education.png" alt="Education" class="nav-icon">
@@ -204,6 +205,16 @@
                             <div class="big-header-bottomleft">
                                 tech-stack
                             </div>
+                            <div class="tech-buttons">
+                                <a href="https://github.com/Erik0810" target="_blank" class="tech-button">
+                                    <img src="/static/images/icons/github.png" alt="GitHub">
+                                    <span>GitHub</span>
+                                </a>
+                                <a href="https://leetcode.com/u/erik0810/" target="_blank" class="tech-button">
+                                    <img src="/static/images/icons/leetcode.png" alt="LeetCode">
+                                    <span>LeetCode</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -290,6 +301,14 @@
             .nav-button.next {
                 bottom: 25px;
             }
+
+            @media (max-width: 768px) {
+                .nav-button.next {
+                    
+                    right: 20px !important;
+                    transform: none;
+                }
+            }
             .nav-button.prev,
             .nav-button.next {
                 opacity: 1 !important;
@@ -305,6 +324,14 @@
                 flex-direction: column-reverse;
                 align-items: center;
                 gap: 4px;
+            }
+
+            @media (max-width: 768px) {
+                .nav-section {
+                    left: auto;
+                    right: 20px;
+                    transform: none;
+                }
             }
 
             .nav-text {

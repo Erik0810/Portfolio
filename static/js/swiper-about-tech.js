@@ -24,12 +24,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Mobile
             320: {
                 slidesPerView: 3,
-                spaceBetween: 20
+                spaceBetween: 10
             },
             // Tablet
             768: {
-                slidesPerView: 4,
-                spaceBetween: 25
+                slidesPerView: 3,
+                spaceBetween: 10
             },
             // Desktop
             1024: {

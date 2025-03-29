@@ -2,31 +2,29 @@
 
 {% block content %}
     <style>
-        header {
-            padding-top: 13px !important;
-            padding-left: 28px !important;
-            padding-right: 28px !important;
-            padding-bottom: 20px !important;
-            z-index: 100;
-            position: relative;
-        }
+        
+        
         body {
-            overflow: hidden;
+            overflow-x: hidden;
             margin: 0;
             padding: 0;
         }
+        
+        /* Base container styles */
         .swiper {
             width: 100%;
-            height: calc(100vh - 130px); /* Adjusted for new header padding (13px + 20px) */
+            height: calc(100vh - var(--header-height));
             position: relative;
-            max-width: 1400px;
+            max-width: var(--max-width);
             margin: 0 auto;
-            padding: 0 28px; /* Match new header padding */
+            padding: 0 var(--container-padding);
         }
+        
         .swiper-wrapper {
             width: 100%;
             height: 100%;
         }
+        
         .swiper-slide {
             width: 100%;
             height: 100%;
@@ -36,11 +34,14 @@
             overflow: hidden;
             opacity: 0;
             pointer-events: none;
+            transition: opacity 0.5s ease;
         }
+        
         .swiper-slide.active {
             opacity: 1;
             pointer-events: auto;
         }
+        
         .slide-container {
             position: absolute;
             top: 0;
@@ -51,7 +52,19 @@
             align-items: center;
             justify-content: center;
             transform-origin: center center;
-            background: white;
+            background: var(--color-background);
+            padding: var(--space-md);
+        }
+
+        @media (max-width: 768px) {
+            .swiper {
+                height: calc(100vh - var(--header-height) - var(--space-lg));
+                padding: 0 var(--space-sm);
+            }
+            
+            .slide-container {
+                padding: var(--space-sm);
+            }
         }
         .slide-content {
             width: 100%;
@@ -59,45 +72,76 @@
             display: grid;
             grid-template-columns: 1.2fr 1fr;
             position: relative;
+            gap: var(--space-md);
         }
+        
         .slide-text {
-            padding: 60px;
+            padding: var(--space-md);
             display: flex;
             flex-direction: column;
             justify-content: center;
+            gap: var(--space-md);
         }
+        
         .slide-title {
-            font-size: 5vw;
+            font-size: clamp(2rem, 5vw, 4rem);
             font-weight: bold;
-            margin-bottom: 2rem;
-            line-height: 1;
-            color: black;
+            line-height: 1.1;
+            color: var(--color-primary);
         }
+        
         .slide-description {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
             max-width: 600px;
-            margin-bottom: 2rem;
             opacity: 0.8;
             line-height: 1.6;
         }
+        
+        @media (max-width: 768px) {
+            .slide-content {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
+                gap: var(--space-sm);
+            }
+            
+            .slide-text {
+                padding: var(--space-sm);
+                gap: var(--space-sm);
+                order: 2;
+            }
+            
+            .slide-title {
+                font-size: clamp(1.75rem, 6vw, 2.5rem);
+            }
+            
+            .slide-description {
+                font-size: 1rem;
+            }
+        }
         .slide-links {
             display: flex;
-            gap: 1rem;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
         }
+        
         .slide-link {
             display: inline-block;
-            padding: 1rem 2rem;
-            background: black;
-            color: white;
+            padding: var(--space-sm) var(--space-md);
+            background: var(--color-primary);
+            color: var(--color-background);
             text-decoration: none;
             font-weight: bold;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
             width: fit-content;
+            border-radius: 4px;
         }
+        
         .slide-link:hover {
             transform: translateY(-2px);
-            color: white;
+            color: var(--color-background);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
+        
         .slide-image-container {
             width: 100%;
             height: 100%;
@@ -106,6 +150,26 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 8px;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .slide-links {
+                justify-content: center;
+                gap: var(--space-xs);
+            }
+            
+            .slide-link {
+                padding: var(--space-xs) var(--space-sm);
+                font-size: 0.9rem;
+            }
+            
+            .slide-image-container {
+                margin: var(--space-sm) 0;
+                height: 40vh;
+                order: 1;
+            }
         }
         .image-aspect-ratio {
             width: 100%;
@@ -116,28 +180,35 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            max-width: 100%;
+            max-height: 120%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            margin: 0 auto;
+            transform: none;
         }
         .nav-button {
             position: fixed;
             top: 50%;
             transform: translateY(-50%);
-            width: 60px;
-            height: 60px;
-            background: white;
+            width: clamp(45px, 8vw, 60px);
+            height: clamp(45px, 8vw, 60px);
+            background: var(--color-background);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             z-index: 100;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
         }
+
         .nav-button:hover {
             transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
         }
         .nav-button.prev {
             left: 30px;
@@ -308,26 +379,40 @@
     <style>
         .swiper-pagination {
             position: fixed;
-            bottom: 30px;
+            bottom: var(--space-md);
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 10px;
+            gap: var(--space-sm);
             z-index: 100;
+            padding: var(--space-xs);
         }
-        @media (max-width: 768px) {
-            .swiper-pagination {
-                bottom: 20px; /* Move dots closer to bottom to make room for nav buttons */
-            }
-        }
+
         .swiper-pagination-bullet {
-            width: 10px;
-            height: 10px;
+            width: clamp(8px, 2vw, 12px);
+            height: clamp(8px, 2vw, 12px);
             background: rgba(0, 0, 0, 0.2);
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        @media (max-width: 768px) {
+            .swiper-pagination {
+                bottom: var(--space-sm);
+                padding: var(--space-xs) var(--space-sm);
+                background: rgba(255, 255, 255, 0.8);
+                border-radius: 20px;
+                backdrop-filter: blur(4px);
+            }
+            
+            .swiper-pagination-bullet {
+                width: 16px;
+                height: 16px;
+                margin: 0 2px;
+            }
         }
 
         .swiper-pagination-bullet::after {
